@@ -51,7 +51,6 @@
  *    intf/spi layers for your platform                              */
 
 /** The macro is defined when STM32 i2c implementation is available */
-#define CONFIG_PLATFORM_I2C_AVAILABLE
 #define CONFIG_PLATFORM_SPI_AVAILABLE
 
 #ifdef __cplusplus

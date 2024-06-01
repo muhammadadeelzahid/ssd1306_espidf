@@ -39,23 +39,7 @@
  */
 
 #include "UserSettings.h"
-#if defined(ARDUINO) && !defined(ENERGIA)
-#include "arduino/io.h"
-#elif defined(__AVR__) && !defined(ARDUINO)
-#include "avr/io.h"
-#elif defined(__XTENSA__) && !defined(ARDUINO)
 #include "esp/io.h"
-#elif defined(STM32F1) || defined(STM32F2) || defined(STM32F4)
-#include "stm32/io.h"
-#elif defined(__linux__)
-#include "linux/io.h"
-#elif defined(__MINGW32__)
-#include "mingw/io.h"
-#elif defined(ENERGIA)
-#include "energia/io.h"
-#else
-#warning "Platform is not supported. Use template to add support"
-#include "template/io.h"
 #endif
 
 #ifndef LCDINT_TYPES_DEFINED
@@ -126,11 +110,3 @@ void ssd1306_platform_spiInit(int8_t busId, int8_t cesPin, int8_t dcPin);
 #ifdef __cplusplus
 }
 #endif
-
-/**
- * @}
- */
-
-#endif
-
-

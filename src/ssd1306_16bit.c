@@ -27,6 +27,7 @@
 #include "intf/ssd1306_interface.h"
 #include "lcd/lcd_common.h"
 #include "ssd1306_hal/io.h"
+#include "stdio.h"
 
 extern uint16_t ssd1306_color;
 extern uint8_t s_ssd1306_invertByte;

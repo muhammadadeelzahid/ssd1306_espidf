@@ -252,15 +252,6 @@ void ssd1306_platform_spiInit(int8_t busId,
                               int8_t cesPin,
                               int8_t dcPin)
 {
-    // Use VSPI by default
-    if (busId < 0) busId = 1;
-    s_spi_bus_id = busId;
-
-    // If cesPin is not provided, select by default
-    if (cesPin < 0)
-    {
-        cesPin = s_spi_bus_id ? 5 : 15;
-    }
     s_ssd1306_cs = cesPin;
     if (dcPin>=0) s_ssd1306_dc = dcPin;
 
@@ -278,7 +269,7 @@ void ssd1306_platform_spiInit(int8_t busId,
     spi_bus_config_t buscfg=
     {
         .miso_io_num= s_spi_bus_id ? 19 : 12,
-        .mosi_io_num= 10,
+        .mosi_io_num= 23,
         .sclk_io_num= 18,
         .quadwp_io_num=-1,
         .quadhd_io_num=-1,
