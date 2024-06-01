@@ -100,7 +100,7 @@ static void platform_i2c_stop(void)
 {
     // ... Complete i2c communication
     i2c_master_stop(s_cmd_handle);
-    /*esp_err_t ret =*/ i2c_master_cmd_begin(s_bus_id, s_cmd_handle, 1000 / portTICK_RATE_MS);
+    /*esp_err_t ret =*/ i2c_master_cmd_begin(s_bus_id, s_cmd_handle, 1000 / portTICK_PERIOD_MS);
     i2c_cmd_link_delete(s_cmd_handle);
     s_cmd_handle = NULL;
 }
@@ -206,7 +206,7 @@ static void platform_spi_start(void)
             .spics_io_num=s_ssd1306_cs,
             .queue_size=7,       // max 7 transactions at a time
         };
-        spi_bus_add_device(s_spi_bus_id ? VSPI_HOST : HSPI_HOST, &devcfg, &s_spi);
+        spi_bus_add_device(SPI2_HOST, &devcfg, &s_spi);
         s_first_spi_session = 0;
     }
     s_spi_cached_count = 0;
@@ -236,7 +236,7 @@ static void platform_spi_close(void)
     {
         spi_bus_remove_device( s_spi );
     }
-    spi_bus_free( s_spi_bus_id ? VSPI_HOST : HSPI_HOST );
+    spi_bus_free(SPI2_HOST);
 }
 
 static void platform_spi_send_buffer(const uint8_t *data, uint16_t len)
@@ -278,13 +278,13 @@ void ssd1306_platform_spiInit(int8_t busId,
     spi_bus_config_t buscfg=
     {
         .miso_io_num= s_spi_bus_id ? 19 : 12,
-        .mosi_io_num= s_spi_bus_id ? 23 : 13,
-        .sclk_io_num= s_spi_bus_id ? 18 : 14,
+        .mosi_io_num= 10,
+        .sclk_io_num= 18,
         .quadwp_io_num=-1,
         .quadhd_io_num=-1,
         .max_transfer_sz=32
     };
-    spi_bus_initialize(s_spi_bus_id ? VSPI_HOST : HSPI_HOST, &buscfg, 0); // 0 -no dma
+    spi_bus_initialize(SPI2_HOST, &buscfg, 0); // 0 -no dma
     s_first_spi_session = 1;
 }
 #endif
