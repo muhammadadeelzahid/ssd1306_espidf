@@ -25,8 +25,8 @@
  * @file ssd1306_fonts.h Fonts for monochrome/rgb oled display
  */
 
-#ifndef SSD1306_FONTS_H
-#define SSD1306_FONTS_H
+#ifndef __SSD1306_FONTS__
+#define __SSD1306_FONTS__
 
 #include "ssd1306_hal/io.h"
 #include "nano_gfx_types.h"
@@ -76,6 +76,8 @@ extern const PROGMEM uint8_t free_calibri11x12_cyrillic[];
 /** Calibri ASCII 11x12 Free Type font basic latin */
 extern const PROGMEM uint8_t free_calibri11x12_latin[];
 
+extern const uint8_t free_calibri12x15[] PROGMEM;
+
 
 /**
  * Standard ASCII Free Type font 11x16 with digits only (Ascii codes 32 - 64).
@@ -97,4 +99,4 @@ extern const PROGMEM uint8_t comic_sans_font24x32_123 [];
 }
 #endif
 
-#endif // SSD1306_FONTS_H
+#endif // __SSD1306_FONTS__
